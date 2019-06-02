@@ -39,12 +39,19 @@ Returns `setInterval` id
 
 ## Usage
 ```javascript
-waitForSelector('.progress-bar__fill', () => {
-   console.log('Yey! Single!');
+// Single
+waitForSelector('.block3', (elem) => {
+	// => '.block3'
 })
 
-waitForSelector(['.progress-bar__fill', '.modal-menu--small'], () => {
-   console.log('Yey! Array!');
+// Multiple
+waitForSelector(['.block1', '.block2', '.block4', '.block8'], (list) => {
+	// => ['.block4', '.block2', '.block8', '.block1']
 })
+
+// Race
+waitForSelector(['.block7', '.block4', '.block5', '.block4'], (elem) => {
+	// => '.block5'
+}, { race: true })
 ```
 
