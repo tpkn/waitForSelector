@@ -41,7 +41,7 @@ Returns `setInterval` id
 ```javascript
 // Single
 waitForSelector('.block3', (elem) => {
-   // => '.block3'
+   // => <Element> <div class="block3"></div>
 })
 
 // Multiple
