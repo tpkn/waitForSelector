@@ -26,6 +26,7 @@ function waitForSelector(selectors, cb, options){
    var aid = setInterval(function(){
       // Multiple
       if(isMultiple){
+
          for(i = 0, len = selectors.length; i < len; i++){
             selector = selectors[i];
             
@@ -44,7 +45,8 @@ function waitForSelector(selectors, cb, options){
 
             if(found.length == selectors.length){
                clearInterval(aid);
-               cb(found);
+               cb(selectors);
+               break;
             }
          }
 
@@ -53,7 +55,7 @@ function waitForSelector(selectors, cb, options){
          el = document.querySelector(selectors);
          if(el){
             clearInterval(aid);
-            cb(selectors);
+            cb(el);
          }
       }
    }, delay);
