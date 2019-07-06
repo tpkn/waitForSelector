@@ -41,7 +41,7 @@ Returns `setInterval` id
 ```javascript
 // Single
 waitForSelector('.block3', (elem) => {
-   // => <Element> <div class="block3"></div>
+   // => <div class="block3"></div>
 })
 
 // Multiple
@@ -51,7 +51,7 @@ waitForSelector(['.block1', '.block2', '.block4', '.block8'], (list) => {
 
 // Race
 waitForSelector(['.block7', '.block4', '.block5', '.block4'], (elem) => {
-   // => '.block5'
+   // => <div class="block5"></div>
 }, { race: true })
 ```
 

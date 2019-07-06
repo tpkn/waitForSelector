@@ -36,7 +36,7 @@ function waitForSelector(selectors, cb, options){
                // Race complete
                if(race){
                   clearInterval(aid);
-                  cb(selector);
+                  cb(el);
                   break;
                }
 
