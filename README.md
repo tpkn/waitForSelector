@@ -34,7 +34,7 @@ Wait until one of the given selectros appears in DOM
 
 
 ### return
-Returns `setInterval` id   
+Returns `stop` method that stops the waiting process   
 
 
 ## Usage

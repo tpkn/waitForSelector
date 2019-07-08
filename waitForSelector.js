@@ -60,7 +60,12 @@ function waitForSelector(selectors, cb, options){
       }
    }, delay);
 
-   return aid;
+
+   function stop(){
+      clearInterval(aid);
+   }
+
+   return { stop: stop }
 }
 
 if(typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
