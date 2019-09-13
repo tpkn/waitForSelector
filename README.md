@@ -29,7 +29,7 @@ Recheck delay in `msec`
 Wait until one of the given selectros appears in DOM
 
 
-### return
+### @return
 Returns `stop` method   
 
 
