@@ -1,37 +1,27 @@
 /*! waitForSelector, http://tpkn.me */
-function waitForSelector(selectors, cb, options){
-   var isMultiple = Array.isArray(selectors);
+function waitForSelector(selectors, cb, options = {}){
+   let isMultiple = Array.isArray(selectors);
 
    if(!isMultiple && typeof selectors !== 'string'){
       throw new TypeError('First argument must be a String or an Array!');
    }
-
    if(typeof cb !== 'function'){
       throw new Error('Missing callback function!');
    }
 
-   var i, el, len, selector;
-   options = options || {};
-
-   var found = [];
-   var delay = 50;
-   var race = false;
-
-   if(typeof options.delay === 'number'){
-      delay = options.delay;
-   }
-   if(typeof options.race  === 'undefined' ){
-      delay = options.race;
-   }
+   let {
+      delay = 50,
+      race = false,
+   } = options;
 
    // Filter clones from the list
    if(isMultiple){
-      selectors = selectors.filter(function (item, i, array){
-         return array.indexOf(item) == i;
-      });
+      selectors = selectors.filter((item, i, array) => array.indexOf(item) == i);
    }
 
-   var aid = setInterval(function(){
+
+   let i, el, len, selector, found = [];
+   let aid = setInterval(() => {
       // Multiple
       if(isMultiple){
 
@@ -73,8 +63,9 @@ function waitForSelector(selectors, cb, options){
       clearInterval(aid);
    }
 
-   return { stop: stop }
+   return { stop }
 }
+
 
 if(typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
    module.exports = waitForSelector;
