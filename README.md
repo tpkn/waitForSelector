@@ -1,4 +1,4 @@
-# waitForSelector
+# waitForSelector [![npm Package](https://img.shields.io/npm/v/waitforselector.svg)](https://www.npmjs.org/package/waitforselector)
 Wait for an element(s) with a specific selector to appear 
 
 
