@@ -18,10 +18,10 @@ function waitForSelector(selectors, cb, options){
    var race = false;
 
    if(typeof options.delay === 'number'){
-   	delay = options.delay;
+      delay = options.delay;
    }
    if(typeof options.race  === 'undefined' ){
-   	delay = options.race;
+      delay = options.race;
    }
 
    // Filter clones from the list
