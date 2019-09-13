@@ -3,18 +3,26 @@ function waitForSelector(selectors, cb, options){
    var isMultiple = Array.isArray(selectors);
 
    if(!isMultiple && typeof selectors !== 'string'){
-      throw new TypeError('First argument must be a string or an Array!');
+      throw new TypeError('First argument must be a String or an Array!');
    }
 
    if(typeof cb !== 'function'){
-      throw new Error('Callback function no set!');
+      throw new Error('Missing callback function!');
    }
 
-   var i, el, len, selector, found = [];
+   var i, el, len, selector;
+   options = options || {};
 
-   var opt   = typeof options   !== 'object'    ? {}       : options;
-   var delay = typeof opt.delay !== 'number'    ? 50       : opt.delay;
-   var race  = typeof opt.race  !== 'undefined' ? opt.race : false;
+   var found = [];
+   var delay = 50;
+   var race = false;
+
+   if(typeof options.delay === 'number'){
+   	delay = options.delay;
+   }
+   if(typeof options.race  === 'undefined' ){
+   	delay = options.race;
+   }
 
    // Filter clones from the list
    if(isMultiple){

@@ -17,10 +17,6 @@ Css selector or an array of selectors
 Callback function
 
 
-### options
-**Type**: _Object_   
-
-
 ### options.delay
 **Type**: _Number_   
 **Default**: `50`   
@@ -34,7 +30,7 @@ Wait until one of the given selectros appears in DOM
 
 
 ### return
-Returns `stop` method that stops the waiting process   
+Returns `stop` method   
 
 
 ## Usage
