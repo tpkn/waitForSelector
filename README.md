@@ -17,7 +17,7 @@ Css selector or an array of selectors
 Callback function
 
 
-### options.delay
+### options.interval
 **Type**: _Number_   
 **Default**: `50`   
 Recheck delay in `msec`
@@ -27,6 +27,12 @@ Recheck delay in `msec`
 **Type**: _Boolean_   
 **Default**: `false`   
 Wait until one of the given selectros appears in DOM
+
+
+### options.timeout
+**Type**: _Number_   
+**Default**: `0`   
+Calls `cb` function once fired. `0` turns off timeout
 
 
 ### @return
@@ -50,4 +56,12 @@ waitForSelector(['.block7', '.block4', '.block5', '.block4'], (elem) => {
    // => <div class="block5"></div>
 }, { race: true })
 ```
+
+
+
+## Changelog 
+#### v1.3.0 (2019-09-14):
+- `delay` option renamed to `interval`
+- added `timeout` option
+
 

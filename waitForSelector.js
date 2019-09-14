@@ -10,7 +10,8 @@ function waitForSelector(selectors, cb, options = {}){
    }
 
    let {
-      delay = 50,
+      interval = 50,
+      timeout = 0,
       race = false,
    } = options;
 
@@ -21,6 +22,14 @@ function waitForSelector(selectors, cb, options = {}){
 
 
    let i, el, len, selector, found = [];
+
+   // Waiting timeout
+   let tid;
+   if(timeout){
+      tid = setTimeout(callback, timeout);
+   }
+
+   // Checking
    let aid = setInterval(() => {
       // Multiple
       if(isMultiple){
@@ -33,8 +42,7 @@ function waitForSelector(selectors, cb, options = {}){
 
                // Race complete
                if(race){
-                  clearInterval(aid);
-                  cb(el);
+                  callback(el);
                   break;
                }
 
@@ -42,8 +50,7 @@ function waitForSelector(selectors, cb, options = {}){
             }
 
             if(found.length == selectors.length){
-               clearInterval(aid);
-               cb(selectors);
+               callback(selectors);
                break;
             }
          }
@@ -52,14 +59,20 @@ function waitForSelector(selectors, cb, options = {}){
       }else{
          el = document.querySelector(selectors);
          if(el){
-            clearInterval(aid);
-            cb(el);
+            callback(el);
          }
       }
-   }, delay);
+   }, interval);
 
+
+   // Private callback wrapper
+   function callback(e){
+      stop();
+      cb(e);
+   }
 
    function stop(){
+      clearTimeout(tid);
       clearInterval(aid);
    }
 
