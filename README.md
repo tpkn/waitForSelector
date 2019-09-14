@@ -32,9 +32,8 @@ Wait until one of the given selectros appears in DOM
 ### options.timeout
 **Type**: _Number_   
 **Default**: `0`   
-Stop waiting process after this amount of milliseconds.   
-Calls `cb` function with no arguments.   
-`0` turns off timeout/  
+Stop waiting after this amount of milliseconds.   
+Calls `cb` function with no arguments. Turned off by default.
 
 
 ### @return
