@@ -61,7 +61,7 @@ waitForSelector(['.block7', '.block4', '.block5', '.block4'], (elem) => {
 
 
 ## Changelog 
-#### v1.3.0 (2019-09-14):
+#### v1.2.2 (2019-09-14):
 - `delay` option renamed to `interval`
 - added `timeout` option
 
