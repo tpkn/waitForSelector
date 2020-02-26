@@ -17,10 +17,9 @@ Css selector or an array of selectors
 Callback function
 
 
-### options.interval
-**Type**: _Number_   
-**Default**: `50`   
-Recheck delay in `msec`
+### options.target
+**Type**: _Element_   
+**Default**: `document.body`   
 
 
 ### options.race
@@ -61,6 +60,10 @@ waitForSelector(['.block7', '.block4', '.block5', '.block4'], (elem) => {
 
 
 ## Changelog 
+
+#### v1.3.0 (2020-02-29):
+- moved from `setInterval` to `MutationObserver`
+
 #### v1.2.2 (2019-09-14):
 - `delay` option renamed to `interval`
 - added `timeout` option

@@ -2,45 +2,57 @@
 function waitForSelector(selectors, cb, options = {}){
    let isMultiple = Array.isArray(selectors);
 
+   if(typeof window.MutationObserver !== 'function'){
+      throw new Error('Your browser does not support MutationObserver');
+   }
+
    if(!isMultiple && typeof selectors !== 'string'){
       throw new TypeError('First argument must be a String or an Array!');
    }
+
    if(typeof cb !== 'function'){
       throw new Error('Missing callback function!');
    }
 
-   let {
-      interval = 50,
-      timeout = 0,
-      race = false,
-   } = options;
 
-   // Filter clones from the list
+   // Filtering clones from the selectors list
    if(isMultiple){
       selectors = selectors.filter((item, i, array) => array.indexOf(item) == i);
    }
 
+   let tid, selector, found = [];
+   let { target = document.body, timeout = 0, race = false } = options;
 
-   let i, el, len, selector, found = [];
+   let observer = new MutationObserver(e => {
+      for(let mutation of e){
+         if(mutation.addedNodes.length){
+            CheckDOM();
+         }
+      }
+   });
+
+   observer.observe(target, { childList: true, subtree: true });
+
+   // Initial check
+   CheckDOM();
+
 
    // Waiting timeout
-   let tid;
    if(timeout){
       tid = setTimeout(callback, timeout);
    }
 
-   // Checking
-   let aid = setInterval(() => {
-      // Multiple
+  
+   function CheckDOM(){
       if(isMultiple){
 
-         for(i = 0, len = selectors.length; i < len; i++){
+         for(let i = 0, len = selectors.length; i < len; i++){
             selector = selectors[i];
             
-            el = document.querySelector(selector);
+            let el = document.querySelector(selector);
             if(el && found.indexOf(selector) == -1){
 
-               // Race complete
+               // Race completed
                if(race){
                   callback(el);
                   break;
@@ -54,18 +66,14 @@ function waitForSelector(selectors, cb, options = {}){
                break;
             }
          }
-
-      // Single
       }else{
          el = document.querySelector(selectors);
          if(el){
             callback(el);
          }
       }
-   }, interval);
+   }
 
-
-   // Private callback wrapper
    function callback(e){
       stop();
       cb(e);
@@ -73,7 +81,7 @@ function waitForSelector(selectors, cb, options = {}){
 
    function stop(){
       clearTimeout(tid);
-      clearInterval(aid);
+      observer.disconnect();
    }
 
    return { stop }
