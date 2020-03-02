@@ -21,7 +21,7 @@ function waitForSelector(selectors, cb, options = {}){
    }
 
    let tid, selector, found = [];
-   let { target = document.body, timeout = 0, race = false } = options;
+   let { target = document.body, timeout = 0, race = false, endless = false } = options;
 
    let observer = new MutationObserver(e => {
       for(let mutation of e){
@@ -75,7 +75,9 @@ function waitForSelector(selectors, cb, options = {}){
    }
 
    function callback(e){
-      stop();
+      if(!endless){
+         stop();
+      }
       cb(e);
    }
 

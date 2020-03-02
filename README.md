@@ -22,6 +22,12 @@ Callback function
 **Default**: `document.body`   
 
 
+### options.endless
+**Type**: _Boolean_   
+**Default**: `false`   
+Sometimes elements can be appended, removed and appended again. This option allows you to track each append of an element into the DOM structure.
+
+
 ### options.race
 **Type**: _Boolean_   
 **Default**: `false`   
