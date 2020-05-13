@@ -44,17 +44,19 @@ function waitForSelector(selectors, cb, options = {}){
 
   
    function CheckDOM(){
+   	let element;
+
       if(isMultiple){
 
          for(let i = 0, len = selectors.length; i < len; i++){
             selector = selectors[i];
             
-            let el = document.querySelector(selector);
-            if(el && found.indexOf(selector) == -1){
+            element = document.querySelector(selector);
+            if(element && found.indexOf(selector) == -1){
 
                // Race completed
                if(race){
-                  callback(el);
+                  callback(element);
                   break;
                }
 
@@ -67,9 +69,9 @@ function waitForSelector(selectors, cb, options = {}){
             }
          }
       }else{
-         el = document.querySelector(selectors);
-         if(el){
-            callback(el);
+         element = document.querySelector(selectors);
+         if(element){
+            callback(element);
          }
       }
    }
